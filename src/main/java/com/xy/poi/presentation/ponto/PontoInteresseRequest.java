@@ -14,8 +14,8 @@ public class PontoInteresseRequest {
     @JsonIgnore
     public GeoJsonPoint getLocalizacao() {
 
-        if (latitude == null|| longitude == null)
-            return null;
+        if (latitude == null || longitude == null)
+            return new GeoJsonPoint(0, 0);
 
         return new GeoJsonPoint(latitude, longitude);
     }
