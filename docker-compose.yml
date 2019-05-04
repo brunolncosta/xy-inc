@@ -1,0 +1,41 @@
+version: '3.1'
+services:
+
+  mongo:
+    container_name: mongo
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    volumes:
+      - ./data/db:/data/db
+
+  mongo-express:
+    container_name: mongo-express
+    image: mongo-express
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: admin
+    links:
+      - mongo
+    depends_on:
+      - mongo
+
+  web-poi:
+    container_name: web-poi
+    image: brunoluisncosta/poi
+    restart: always
+    ports:
+       - "8080:8080"
+    environment:
+      DB_HOST: mongo
+    depends_on:
+       - mongo
+
+
