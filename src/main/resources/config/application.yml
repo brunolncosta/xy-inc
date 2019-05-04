@@ -1,0 +1,17 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /poi
+
+spring:
+  application:
+    name: poi-service
+
+  data:
+    mongodb:
+      authentication-database: admin
+      database: poi
+      host: ${DB_HOST:localhost}
+      port: ${DB_PORT:27017}
+      username: ${DB_USER:admin}
+      password: ${DB_PASSWORD:admin}
