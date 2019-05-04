@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static org.springframework.http.HttpStatus.CREATED;
+
 @RestController
 @RequestMapping("pontos-de-interesse")
 public class PontoInteresseController extends BaseController {
@@ -24,6 +26,7 @@ public class PontoInteresseController extends BaseController {
     private PontoInteresseService service;
 
     @PostMapping
+    @ResponseStatus(CREATED)
     private Response<PontoInteresseResponse> create(@RequestBody PontoInteresseRequest request) {
         PontoInteresse pontoInteresse = convertToBean(request, PontoInteresse.class);
         pontoInteresse = service.add(pontoInteresse);
