@@ -1,0 +1,13 @@
+server:
+  servlet:
+    context-path: /poi
+
+spring:
+  data:
+    mongodb:
+      authentication-database: admin
+      database: poi-test
+      host: ${DB_HOST:localhost}
+      port: ${DB_PORT:27017}
+      username: ${DB_USER:admin}
+      password: ${DB_PASSWORD:admin}
