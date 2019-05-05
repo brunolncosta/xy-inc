@@ -1,9 +1,13 @@
-package com.xy.poi.domain.model;
+package com.xy.poi.util;
+
+import com.xy.poi.domain.model.PontoInteresse;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public final class PontoInteresseGenerator {
+public final class PontoInteresseUtilGenerator {
+
+    private PontoInteresseUtilGenerator() {}
 
     public static PontoInteresse createLanchonete() {
         return new PontoInteresse("Lanchonete", 27D, 12D);
