@@ -18,7 +18,7 @@ import java.util.*;
 import static com.jayway.restassured.RestAssured.given;
 import static com.jayway.restassured.RestAssured.when;
 import static com.jayway.restassured.http.ContentType.JSON;
-import static com.xy.poi.domain.model.PontoInteresseGenerator.*;
+import static com.xy.poi.util.PontoInteresseUtilGenerator.*;
 import static java.util.stream.Collectors.toMap;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
@@ -113,15 +113,21 @@ public class PontoInteresseControllerIT {
         request.setLatitude(null);
         request.setLongitude(null);
 
-        given()
-            .contentType(JSON)
-            .content(request)
-            .post(CREATE_PATH)
-        .then()
-            .statusCode(BAD_REQUEST.value())
-            .body("errors", hasSize(3))
-            .body("data", Matchers.nullValue())
-            .root("errors");
+        List<String> erros = given()
+                                .contentType(JSON)
+                                .content(request)
+                                .post(CREATE_PATH)
+                            .then()
+                                .statusCode(BAD_REQUEST.value())
+                                .body("errors", hasSize(3))
+                                .body("data", Matchers.nullValue())
+                            .extract()
+                                .jsonPath()
+                                .getList("errors", String.class);
+
+        assertTrue(erros.contains("O campo longitude é obrigatório(a)"));
+        assertTrue(erros.contains("O campo nome não pode ficar vazio"));
+        assertTrue(erros.contains("O campo latitude é obrigatório(a)"));
     }
 
     @Test
