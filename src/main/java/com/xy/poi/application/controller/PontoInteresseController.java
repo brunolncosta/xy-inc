@@ -55,22 +55,4 @@ public class PontoInteresseController extends BaseController {
         return convertToResponse(result, PontoInteresseResponse.class);
     }
 
-    @GetMapping("/create-all")
-    public final void createAll() {
-
-        PontoInteresse lanchonete = new PontoInteresse("Lanchonete", 27D, 12D);
-        PontoInteresse posto = new PontoInteresse("Posto", 31D, 18D);
-        PontoInteresse joalheria = new PontoInteresse("Joalheria", 15D, 12D);
-        PontoInteresse pub = new PontoInteresse("Pub", 12D, 8D);
-        PontoInteresse supermercado = new PontoInteresse("Supermercado", 23D, 6D);
-        PontoInteresse churrascaria = new PontoInteresse("Churrascaria", 28D, 2D);
-
-        service.add(lanchonete);
-        service.add(posto);
-        service.add(joalheria);
-        service.add(pub);
-        service.add(supermercado);
-        service.add(churrascaria);
-    }
-
 }
